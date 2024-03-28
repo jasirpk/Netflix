@@ -38,6 +38,9 @@ dependencies:
   lottie: ^3.1.0
   google_fonts: ^6.2.1
   http: ^1.2.1
+  carousel_slider: ^4.2.1
+  cached_network_image: ^3.3.1
+  
 
 dev_dependencies:
   flutter_test:
@@ -65,6 +68,7 @@ flutter:
   assets:
     - assets/images/Animation - 1711432641184.json
     - assets/images/netflix-logo.webp
+    - assets/images/BrandAssets_Logos_02-NSymbol.jpg
 
    
 

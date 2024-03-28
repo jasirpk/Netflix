@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
 import 'package:netflix/Services/api_services.dart';
-// import 'package:netflix/models/nowplaying_model.dart';
+import 'package:netflix/models/nowplaying_model.dart';
+import 'package:netflix/models/popular_movie.dart';
+import 'package:netflix/models/tvseries_model.dart';
 import 'package:netflix/models/upcoming_model.dart';
+import 'package:netflix/widgets/carousal_widget.dart';
 import 'package:netflix/widgets/movie_card.dart';
 
 class Home_screen extends StatefulWidget {
@@ -13,15 +16,16 @@ class Home_screen extends StatefulWidget {
 }
 
 class _Home_screenState extends State<Home_screen> {
-  late Future<UpcomingMovieModel> upcomingFuture;
-  late Future<UpcomingMovieModel> nowPlayingFuture;
-
+  // late Future<UpcomingMovieModel> upcomingFuture;
+  // late Future<NowPlayingMovieModel> nowPlayingFuture;
+  late Future<TvSeriesModel> topRatedSeries;
   ApiServices apiServices = ApiServices();
   @override
   void initState() {
     super.initState();
-    upcomingFuture = apiServices.getUpcomingMovie();
-    nowPlayingFuture = apiServices.getNowPlayingMovies();
+    topRatedSeries = apiServices.getTopRatedSeries();
+    // upcomingFuture = apiServices.getUpcomingMovie();
+    // nowPlayingFuture = apiServices.getNowPlayingMovies();
   }
 
   @override
@@ -58,18 +62,42 @@ class _Home_screenState extends State<Home_screen> {
         ),
         body: SingleChildScrollView(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              FutureBuilder(
+                  future: topRatedSeries,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return carousal_Widget_Screen(data: snapshot.data!);
+                    } else {
+                      return SizedBox.shrink();
+                    }
+                  }),
               SizedBox(
-                height: 220,
-                child: Movie_Card_widget(
-                    future: upcomingFuture, headLIneText: "Upcoming Movies"),
+                  height: 260,
+                  child: Movie_Card_widget<NowPlayingMovieModel>(
+                    future: ApiServices().getNowPlayingMovies(),
+                    headLIneText: 'Now Playing',
+                  )),
+              SizedBox(
+                height: 20,
               ),
-              // SizedBox(
-              //   height: 220,
-              //   child: Movie_Card_widget(
-              //       future: nowPlayingFuture, headLIneText: "Now Playing"),
-              // ),
+              SizedBox(
+                height: 260,
+                child: Movie_Card_widget<UpcomingMovieModel>(
+                  future: ApiServices().getUpcomingMovie(),
+                  headLIneText: 'Upcoming Movies',
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              SizedBox(
+                height: 260,
+                child: Movie_Card_widget<PopularMoviesModel>(
+                  future: ApiServices().getPopularMovies(),
+                  headLIneText: 'Popular Movies',
+                ),
+              ),
             ],
           ),
         ));
