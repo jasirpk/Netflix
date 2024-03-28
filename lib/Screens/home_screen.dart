@@ -14,14 +14,14 @@ class Home_screen extends StatefulWidget {
 
 class _Home_screenState extends State<Home_screen> {
   late Future<UpcomingMovieModel> upcomingFuture;
-  // late Future<NowPlayingMovieModel> nowPlayingFuture;
+  late Future<UpcomingMovieModel> nowPlayingFuture;
 
   ApiServices apiServices = ApiServices();
   @override
   void initState() {
     super.initState();
     upcomingFuture = apiServices.getUpcomingMovie();
-    // nowPlayingFuture = apiServices.getNowPlayingMovies();
+    nowPlayingFuture = apiServices.getNowPlayingMovies();
   }
 
   @override

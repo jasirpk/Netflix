@@ -23,15 +23,15 @@ class ApiServices {
     throw Exception("Failed to load upcoming movies");
   }
 
-  // Future<NowPlayingMovieModel> getNowPlayingMovies() async {
-  //   endPont = "movie/now_playing";
-  //   final url = "$baseUrl$endPont$key";
-  //   final response = await http.get(Uri.parse(url));
-  //   if (response.statusCode == 200) {
-  //     log("Success");
-  //     return NowPlayingMovieModel.fromJson(jsonDecode(response.body));
-  //   }
+  Future<UpcomingMovieModel> getNowPlayingMovies() async {
+    endPont = "movie/now_playing";
+    final url = "$baseUrl$endPont$key";
+    final response = await http.get(Uri.parse(url));
+    if (response.statusCode == 200) {
+      log("Success");
+      return UpcomingMovieModel.fromJson(jsonDecode(response.body));
+    }
 
-  //   throw Exception("Failed to load Now movies");
-  // }
+    throw Exception("Failed to load Now movies");
+  }
 }
