@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/Screens/search_screen.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/nowplaying_model.dart';
 import 'package:netflix/models/popular_movie.dart';
@@ -44,7 +45,12 @@ class _Home_screenState extends State<Home_screen> {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Search_Screen()));
+                  },
                   child: Icon(
                     Icons.search,
                     color: Colors.white,
