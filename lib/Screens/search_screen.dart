@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/Screens/movie_detail.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/search_model.dart';
 import 'package:netflix/widgets/popular_card.dart';
@@ -42,7 +43,7 @@ class _Search_ScreenState extends State<Search_Screen> {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(10.0),
+                  padding: EdgeInsets.all(10.0),
                   child: CupertinoSearchTextField(
                     backgroundColor: Colors.white24,
                     controller: searchController,
@@ -82,30 +83,42 @@ class _Search_ScreenState extends State<Search_Screen> {
                               childAspectRatio: 1.2 / 2,
                             ),
                             itemBuilder: (context, index) {
-                              return Column(
-                                children: [
-                                  searchModel?.results[index].backdropPath ==
-                                          null
-                                      ? Image.asset(
-                                          "assets/images/BrandAssets_Logos_02-NSymbol.jpg",
-                                          height: 170,
-                                        )
-                                      : CachedNetworkImage(
-                                          imageUrl:
-                                              "${imageUrl}${searchModel!.results[index].backdropPath}",
-                                          height: 170,
-                                        ),
-                                  SizedBox(
-                                    width: 100,
-                                    child: Text(
-                                      searchModel!.results[index].originalTitle,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 14),
-                                    ),
-                                  )
-                                ],
+                              return InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MovieDetail_Screen(
+                                                  movieId: searchModel!
+                                                      .results[index].id)));
+                                },
+                                child: Column(
+                                  children: [
+                                    searchModel?.results[index].backdropPath ==
+                                            null
+                                        ? Image.asset(
+                                            "assets/images/BrandAssets_Logos_02-NSymbol.jpg",
+                                            height: 170,
+                                          )
+                                        : CachedNetworkImage(
+                                            imageUrl:
+                                                "${imageUrl}${searchModel!.results[index].backdropPath}",
+                                            height: 170,
+                                          ),
+                                    SizedBox(
+                                      width: 100,
+                                      child: Text(
+                                        searchModel!
+                                            .results[index].originalTitle,
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: 14),
+                                      ),
+                                    )
+                                  ],
+                                ),
                               );
                             }),
               ],

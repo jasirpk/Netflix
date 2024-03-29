@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/Screens/movie_detail.dart';
 
 class Movie_Card_widget<T> extends StatelessWidget {
   final Future<T> future;
@@ -32,6 +33,7 @@ class Movie_Card_widget<T> extends StatelessWidget {
         } else {
           // Access the data when it's available
           var data = (snapshot.data as dynamic).results;
+
           return Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -52,13 +54,26 @@ class Movie_Card_widget<T> extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
-                      return Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Image.network(
-                          "${imageUrl}${data[index].posterPath}",
+                      var movie = data[index];
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MovieDetail_Screen(
+                                movieId: movie.id,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Image.network(
+                            "${imageUrl}${data[index].posterPath}",
+                          ),
                         ),
                       );
                     },

@@ -2,8 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/models/movie_detail.dart';
 import 'package:netflix/models/nowplaying_model.dart';
 import 'package:netflix/models/popular_movie.dart';
+import 'package:netflix/models/recommentation.dart';
 import 'package:netflix/models/search_model.dart';
 import 'package:netflix/models/tvseries_model.dart';
 import 'package:netflix/models/upcoming_model.dart';
@@ -78,5 +80,35 @@ class ApiServices {
     }
 
     throw Exception("Failed to Search movies");
+  }
+
+  Future<MovieDetatilsModel> getMovieDetail(int movieId) async {
+    endPont = "movie/$movieId";
+    final url = "$baseUrl$endPont$key";
+
+    final response = await http.get(
+      Uri.parse(url),
+    );
+    if (response.statusCode == 200) {
+      log("Success");
+      return MovieDetatilsModel.fromJson(jsonDecode(response.body));
+    }
+
+    throw Exception("Failed to load movie Detail");
+  }
+
+  Future<MovieRecommendationModel> getMovieRecommendation(int movieId) async {
+    endPont = "movie/$movieId/recommendations";
+    final url = "$baseUrl$endPont$key";
+    print("recommendation url is $url");
+    final response = await http.get(
+      Uri.parse(url),
+    );
+    if (response.statusCode == 200) {
+      log("Success");
+      return MovieRecommendationModel.fromJson(jsonDecode(response.body));
+    }
+
+    throw Exception("Failed to load movie recommendation");
   }
 }

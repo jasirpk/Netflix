@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/Screens/movie_detail.dart';
 
 class Popular_Widget_Screen<T> extends StatelessWidget {
   final Future<T> future;
@@ -52,36 +53,46 @@ class Popular_Widget_Screen<T> extends StatelessWidget {
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
-                    return Container(
-                      height: 150,
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Row(
-                        children: [
-                          Image.network(
-                            "${imageUrl}${data[index].posterPath}",
-                          ),
-                          SizedBox(
-                            width: 20,
-                          ),
-                          Flexible(
-                            fit: FlexFit.tight,
-                            child: SizedBox(
-                              width: 260,
-                              child: Text(
-                                data[index].title,
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MovieDetail_Screen(
+                                      movieId: data[index].id,
+                                    )));
+                      },
+                      child: Container(
+                        height: 150,
+                        padding: EdgeInsets.all(5),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Row(
+                          children: [
+                            Image.network(
+                              "${imageUrl}${data[index].posterPath}",
+                            ),
+                            SizedBox(
+                              width: 20,
+                            ),
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: SizedBox(
+                                width: 260,
+                                child: Text(
+                                  data[index].title,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
-                            ),
-                          )
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     );
                   },
