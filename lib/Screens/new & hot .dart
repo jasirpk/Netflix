@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:netflix/widgets/comingsoon_widget.dart';
 
 class NewAndHot_Screen extends StatefulWidget {
@@ -49,26 +46,27 @@ class _NewAndHot_ScreenState extends State<NewAndHot_Screen> {
             ),
           ],
           bottom: TabBar(
-              dividerColor: Colors.black,
-              isScrollable: false,
-              indicator: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: Colors.white,
+            dividerColor: Colors.black,
+            isScrollable: false,
+            indicator: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              color: Colors.white,
+            ),
+            unselectedLabelColor: Colors.white,
+            labelColor: Colors.black,
+            labelStyle: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 14,
+            ),
+            tabs: [
+              Tab(
+                text: "  🍿 Coming Soon  ",
               ),
-              unselectedLabelColor: Colors.white,
-              labelColor: Colors.black,
-              labelStyle: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-              tabs: [
-                Tab(
-                  text: "  🍿 Coming Soon  ",
-                ),
-                Tab(
-                  text: "  🔥 Everyone's watching  ",
-                )
-              ]),
+              Tab(
+                text: "  🔥 Everyone's watching  ",
+              )
+            ],
+          ),
         ),
         body: TabBarView(children: [
           SingleChildScrollView(

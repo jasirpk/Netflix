@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
+import 'package:netflix/Screens/profile.dart';
 import 'package:netflix/Screens/search_screen.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/nowplaying_model.dart';
@@ -17,16 +18,12 @@ class Home_screen extends StatefulWidget {
 }
 
 class _Home_screenState extends State<Home_screen> {
-  // late Future<UpcomingMovieModel> upcomingFuture;
-  // late Future<NowPlayingMovieModel> nowPlayingFuture;
   late Future<TvSeriesModel> topRatedSeries;
   ApiServices apiServices = ApiServices();
   @override
   void initState() {
     super.initState();
     topRatedSeries = apiServices.getTopRatedSeries();
-    // upcomingFuture = apiServices.getUpcomingMovie();
-    // nowPlayingFuture = apiServices.getNowPlayingMovies();
   }
 
   @override
@@ -57,9 +54,15 @@ class _Home_screenState extends State<Home_screen> {
                     size: 30,
                   )),
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(6),
-              child: Container(color: Colors.blue, height: 27, width: 27),
+            InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Welcome_Netflix()));
+              },
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Container(color: Colors.blue, height: 27, width: 27),
+              ),
             ),
             SizedBox(
               width: 20,

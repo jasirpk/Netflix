@@ -14,6 +14,9 @@ class Netflix_UI extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        textTheme: TextTheme(
+            bodyLarge: TextStyle(color: Colors.white),
+            bodyMedium: TextStyle(color: Colors.white)),
         fontFamily: GoogleFonts.ptSans().fontFamily,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
       ),
