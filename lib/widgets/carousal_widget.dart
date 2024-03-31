@@ -20,16 +20,7 @@ class carousal_Widget_Screen extends StatelessWidget {
           itemBuilder: (BuildContext context, int index, int realIndex) {
             var url = data.results[index].backdropPath.toString();
             return GestureDetector(
-              // onTap: () {
-              //   Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //       builder: (context) => MovieDetail_Screen(
-              //         movieId: ur.id,
-              //       ),
-              //     ),
-              //   );
-              // },
+              onTap: () {},
               child: Column(
                 children: [
                   CachedNetworkImage(imageUrl: "$imageUrl$url"),

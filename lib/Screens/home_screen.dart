@@ -76,7 +76,9 @@ class _Home_screenState extends State<Home_screen> {
                   future: topRatedSeries,
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return carousal_Widget_Screen(data: snapshot.data!);
+                      return carousal_Widget_Screen(
+                        data: snapshot.data!,
+                      );
                     } else {
                       return SizedBox.shrink();
                     }

@@ -4,6 +4,7 @@ import 'package:netflix/Common/utils.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/movie_detail.dart';
 import 'package:netflix/models/recommentation.dart';
+import 'package:netflix/widgets/popular_card.dart';
 
 class MovieDetail_Screen extends StatefulWidget {
   final int movieId;
@@ -144,7 +145,9 @@ class _MovieDetail_ScreenState extends State<MovieDetail_Screen> {
                             if (snapshot.hasData) {
                               final movie = snapshot.data;
                               return movie!.results.isEmpty
-                                  ? SizedBox()
+                                  ? Popular_Widget_Screen(
+                                      future: apiServices.getPopularMovies(),
+                                      headLIneText: 'Trending Movies')
                                   : Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -198,7 +201,9 @@ class _MovieDetail_ScreenState extends State<MovieDetail_Screen> {
                                       ],
                                     );
                             }
-                            return Text('error');
+                            return Popular_Widget_Screen(
+                                future: apiServices.getPopularMovies(),
+                                headLIneText: "Trending Movies");
                           },
                         )
                       ],

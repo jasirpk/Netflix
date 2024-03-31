@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix/Common/utils.dart';
 import 'package:netflix/Screens/movie_detail.dart';
 import 'package:netflix/Services/api_services.dart';
+import 'package:netflix/Services/debouncer.dart';
 import 'package:netflix/models/search_model.dart';
 import 'package:netflix/widgets/popular_card.dart';
 
@@ -15,6 +16,8 @@ class Search_Screen extends StatefulWidget {
 }
 
 class _Search_ScreenState extends State<Search_Screen> {
+  final debouncer = Debouncer(delay: Duration(milliseconds: 500));
+
   TextEditingController searchController = TextEditingController();
   ApiServices apiServices = ApiServices();
   SearchModel? searchModel;
@@ -60,7 +63,9 @@ class _Search_ScreenState extends State<Search_Screen> {
                     onChanged: (value) {
                       if (value.isEmpty) {
                       } else {
-                        Search(searchController.text);
+                        debouncer.call(() {
+                          Search(searchController.text);
+                        });
                       }
                     },
                   ),
@@ -114,7 +119,7 @@ class _Search_ScreenState extends State<Search_Screen> {
                                         maxLines: 2,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
-                                            color: Colors.white, fontSize: 14),
+                                            color: Colors.white, fontSize: 12),
                                       ),
                                     )
                                   ],
