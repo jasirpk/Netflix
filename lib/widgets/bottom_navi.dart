@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Screens/home_screen.dart';
-import 'package:netflix/Screens/new%20&%20hot%20.dart';
-import 'package:netflix/Screens/search_screen.dart';
+import 'package:netflix/screens/home_screen.dart';
+import 'package:netflix/screens/newand_hot.dart';
+import 'package:netflix/screens/search_screen.dart';
 
 class Bottom_Screen extends StatefulWidget {
   const Bottom_Screen({super.key});

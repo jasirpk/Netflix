@@ -196,13 +196,13 @@ class Result {
       };
 }
 
-enum OriginalLanguage { EN, ES, JA, KO }
+enum OriginalLanguage { EN, ES, KO, PT }
 
 final originalLanguageValues = EnumValues({
   "en": OriginalLanguage.EN,
   "es": OriginalLanguage.ES,
-  "ja": OriginalLanguage.JA,
-  "ko": OriginalLanguage.KO
+  "ko": OriginalLanguage.KO,
+  "pt": OriginalLanguage.PT
 });
 
 class EnumValues<T> {

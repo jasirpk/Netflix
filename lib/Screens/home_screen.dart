@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Common/utils.dart';
-import 'package:netflix/Screens/profile.dart';
-import 'package:netflix/Screens/search_screen.dart';
+import 'package:netflix/common/utils.dart';
+import 'package:netflix/screens/profile.dart';
+import 'package:netflix/screens/search_screen.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/nowplaying_model.dart';
 import 'package:netflix/models/popular_movie.dart';

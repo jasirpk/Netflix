@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix/Common/utils.dart';
+import 'package:netflix/common/utils.dart';
 import 'package:netflix/Services/api_services.dart';
 import 'package:netflix/models/movie_detail.dart';
 import 'package:netflix/models/recommentation.dart';

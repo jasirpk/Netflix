@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:netflix/Common/utils.dart';
+import 'package:netflix/common/utils.dart';
 import 'package:netflix/models/tvseries_model.dart';
 
 class carousal_Widget_Screen extends StatelessWidget {

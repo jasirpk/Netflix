@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:netflix/Screens/splash_screen.dart';
+import 'package:netflix/screens/splash_screen.dart';
 
 void main() {
   runApp(Netflix_UI());

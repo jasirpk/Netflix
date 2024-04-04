@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:netflix/Common/utils.dart';
-import 'package:netflix/Screens/movie_detail.dart';
+import 'package:netflix/common/utils.dart';
+import 'package:netflix/screens/movie_detail.dart';
 
 class Popular_Widget_Screen<T> extends StatelessWidget {
   final Future<T> future;
